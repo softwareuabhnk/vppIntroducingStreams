@@ -2,15 +2,10 @@ package examManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.ToDoubleFunction;
 
 
 public class ExamManager {
-
-	@FunctionalInterface
-	public interface CalculationFunctionInterface {
-
-		public Double execute(List<Double> scores);
-	}
 
 	private List<Double> myScores;
 
@@ -25,7 +20,19 @@ public class ExamManager {
 		myScores.add(54.1);
 	}
 
-	public Double customCalculation(CalculationFunctionInterface calculator) {
-		return calculator.execute(myScores);
+	public Double customCalculation(ToDoubleFunction<List<Double>> calculator) {
+		return calculator.applyAsDouble(myScores);
 	}
+	
+//	public void PrintScores() {
+//		for (Double score: myScores) {
+//			System.out.println(score);
+//		}
+//	}
+	
+	public void PrintScores() {
+		
+		myScores.forEach(s -> System.out.println(s));
+		
+		}
 }
