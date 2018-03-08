@@ -34,11 +34,13 @@ public class Main {
 		System.out.println ("The average score is " + examManager.customCalculation(average));
 		System.out.println ("The highest score is " + examManager.customCalculation(highestScore));
 		
-		// It is not necessary to define you lambda expressions as variables.
-		// Probably the most common way to code. 
+		// It is not necessary to define your lambda expressions as variables.
+		// Though probably the most common way to code. 
 		System.out.println("The first score is: " + examManager.customCalculation(myScores -> myScores.get(0)));
 		
 		examManager.PrintScores();
+		System.out.println("New printSelectedScores higer than 50");
+		examManager.printSelectedScores(s -> s>=50);
 		}
 
 }
