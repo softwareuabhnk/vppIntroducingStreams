@@ -41,6 +41,14 @@ public class Main {
 		examManager.PrintScores();
 		System.out.println("New printSelectedScores higer than 50");
 		examManager.printSelectedScores(s -> s>=50);
+		
+		System.out.println("The total of all scores is: " + examManager.getTotalOfAllScores());
+		System.out.println(" ---- ");
+		examManager.doubleAllScores();
+		System.out.println(" ---- ");
+		List<Double> doubleScore = examManager.doubleAllScores2();
+		doubleScore.forEach(s -> System.out.println(s));
+		
 		}
 
 }

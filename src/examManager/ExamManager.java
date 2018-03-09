@@ -1,12 +1,13 @@
 package examManager;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.ToDoubleFunction;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ExamManager {
 
@@ -52,6 +53,9 @@ public class ExamManager {
 	}
 
 	public void printSelectedScores(Predicate<Double> testCriteria) {
+		
+	myScores.stream().filter(testCriteria).forEach(s -> System.out.println(s));
+	System.out.println("Same printout with functional operating on streams ");
 		// ForEach excepts a lambda expression of type consumer
 		myScores.forEach(s -> {
 			// Evaluates another lambda expression passed in to the method
@@ -60,4 +64,25 @@ public class ExamManager {
 			}
 		});
 	}
+	
+	public double getTotalOfAllScores(){
+		
+		//Double total = 0d;
+		//Stream<Double> scoreStream = myScores.stream();
+		//return scoreStream.reduce(total, (a,b) -> a+b);
+		return myScores.stream().reduce(0d, (a,b) -> a+b);
+				
+	}
+	
+	public void doubleAllScores() {
+		System.out.println("Double all values in my stream:");
+		myScores.stream().map(d -> d*2).forEach(s -> System.out.println(s));
+	}
+	
+	
+	public List<Double> doubleAllScores2() {
+		System.out.println("Double all values in my stream and convert the stream to a List:");
+		return myScores.stream().map(d -> d*2).collect(Collectors.toList());
+	}
+
 }
